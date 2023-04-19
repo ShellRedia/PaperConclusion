@@ -10,5 +10,7 @@
 
 #### Pairwise Self-attention 和 Patchwise Self-attention ?
 
+<img src="./1.jpg" alt="self-attention block" title="self-attention block structrue" />
+
 Pairwise Self-attention:
 
