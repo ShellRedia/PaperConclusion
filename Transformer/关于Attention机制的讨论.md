@@ -40,3 +40,21 @@ ViT 这篇论文算是Transformer 图像处理的始祖论文了，先是介绍�
 <img src="./5.png" alt="TNT Structure" title="TNT Structure" />
 
 性能上也是outperform之前的方法，做了一系列消融实验，包括迁移实验等的Fine-tunning。
+
+### 4. End-to-End Object Detection with Transfromers
+
+论文地址:https://arxiv.org/abs/2005.12872
+
+代码地址:https://github.com/facebookresearch/detr
+
+这一篇是把Transformer的结构用到了目标检测上，是编码器-解码器的结构，避免了NMS, 生成锚点等繁琐的操作。Transformer的解码器首先是带mask的attention，mask的原因是模仿RNN这样的时序结构，只对前向的token做attention，注重时空因果上的关系。然后之所以有两个Multi-Head Attention，是因为第二个Multi-Head Attention需要和编码器的信息进行交互。
+
+<img src="./6.png" alt="Transformer Structure" title="Transformer Structure" />
+                                                                 
+DETR 通过token的query list的方式来生成Object Proposal来确定物体的种类和 Bounding Box。其实和 Proposal Region差不多，也是整了很多额外的no object token来对应无物体的情况。损失函数分为Classification Loss (经典CrossEntropy Loss，无物体时不参与计算) 和 Bounding Box Loss (L1 Loss)。由于预测和标签存在顺序不一致的情况，作者使用了匈牙利算法进行了最优匹配。shengwei
+
+本文网络结构就是 CNN 接Transformer的结构，如图所示，CNN 就是提取特征得到Token的作用，有点像PointNet先升维后降维的操作（CNN升维，1x1 conv 降维）。Positional Embedding只给key和query加了，value没有加。解码器这边的输入就是N个token，N就代表proposal的数量了，一开始全部都是0向量（但是要加 Positional Embedding）,输出就结合损失函数看，进行分支即可。当中有一些辅助Loss就是每一层都算一次损失，进行预测的FFNs共享一套权重。
+ 
+<img src="./7.png" alt="DETR Structure" title="DETR Structure" />
+
+本文的优势在于避免了繁琐的后处理，然后结果展示了消融实验的结果和进行了相应的可视化。
