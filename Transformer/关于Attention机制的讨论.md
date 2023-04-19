@@ -58,3 +58,13 @@ DETR 通过token的query list的方式来生成Object Proposal来确定物体的
 <img src="./7.png" alt="DETR Structure" title="DETR Structure" />
 
 本文的优势在于避免了繁琐的后处理，然后结果展示了消融实验的结果和进行了相应的可视化。
+
+### 5. Training data-efficient image transformers & distillation through attention
+
+论文地址:https://arxiv.org/pdf/2012.12877.pdf
+
+论文代码:https://github.com/facebookresearch/deit
+
+本文相比于ViT，本文关注于data efficient，用更少的数据和参数达到较好的效果。ViT的问题在于不好训练，并从1.可以看出比较泛化，缺乏像CNN一样的归纳偏置。本文做知识蒸馏，分为Soft distillation 和 Hard-label distillation。Soft的损失分为Cross Entropy (CE)的图像分类项以及student 和 teacher 模型的 KL Loss项（两个模型输出的分布尽量接近）。Hard-label的损失直接将 teacher 模型的输出作为 ground-truth 构建两项 CE 损失。
+
+另一方面，与ViT相比，编码器除了加class token，还加了一个distillation token用来接收teacher 模型产生的label。最后作者进行了消融实验研究性能的提升，主要是说明蒸馏过程是有效的。
