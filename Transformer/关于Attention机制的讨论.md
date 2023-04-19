@@ -1,4 +1,4 @@
-#### Exploring Self-attention for Image Recognition
+### Exploring Self-attention for Image Recognition
 
 论文链接：https://arxiv.org/abs/2004.13621
 
@@ -17,3 +17,14 @@
 <img src="./2.png" alt="Results" title="Results" />
 
 结果如图，那自然是文中提出的结构效果更好，尤其是patchwise方法。当然作者在消融实验中还讨论了一些结构设计上的变量（比如全连接层加多少层，是否塞激活函数），以及position encoding带来的影响。此外作者还进行了其他的鲁棒性测试，但基本上是对于卷积网络的对抗性测试（旋转90°），所以本文所提出的方法自然更好。
+
+
+### An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale
+
+论文地址:https://arxiv.org/abs/2010.11929
+
+代码地址:https://github.com/google-research/vision_transformer
+
+ViT 这篇论文算是Transformer 图像处理的始祖论文了，先是介绍了一番Transformer在NLP上的应用，然后是关于卷积网络的成功和局限。ViT所做得就是如图的操作，输入包含位置编码的10个token，输出10个token，最后选一个token接下游任务。其实整个过程要细致理解还是得结合Transformer Encoder的流程图来看，怎么编码和过结构的。
+
+<img src="./3.png" alt="ViT structure" title="ViT structure" />
