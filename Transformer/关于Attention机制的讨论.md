@@ -12,5 +12,8 @@
 
 <img src="./1.jpg" alt="self-attention block" title="self-attention block structrue" />
 
-Pairwise Self-attention:
+总的结构就是这个样子了，Pairwise Self-attention 和 Patchwise Self-attention不同在于作Self-Attention的元素分别为像素和块。核心思想是一样的，分出两个分支再集合起来，最后连上残差。因为有残差，所以可以想象是能够堆叠的，一些经典方法的残差部分也被替换为了Self-attention机制。
 
+<img src="./2.png" alt="Results" title="Results" />
+
+结果如图，那自然是文中提出的结构效果更好，尤其是patchwise方法。当然作者在消融实验中还讨论了一些结构设计上的变量带来的影响，以及position encoding带来的影响。
