@@ -72,3 +72,17 @@ DETR 通过token的query list的方式来生成Object Proposal来确定物体的
 另一方面，与ViT相比，编码器除了加class token，还加了一个distillation token用来接收teacher 模型产生的label。最后作者进行了消融实验研究性能的提升，主要是说明蒸馏过程是有效的，训练的性能收敛也会放缓一些，也测试了一些例如optimaize, 数据增强，正则化和迁移学习的相关实验。
 
 <img src="./9.png" alt="DeiT Structure" title="DeiT Structure" />
+
+### 6. Swin Transformer: Hierarchical Vision Transformer using Shifted Windows
+
+论文地址:http://arxiv.org/abs/2103.14030
+
+论文代码:https://github.com/microsoft/Swin-Transformer
+
+这篇文章就是比较明显地把ViT卷积化，Hierarchical就表示具有某种策略应对不同尺度的图像信息。另外就是W-MSA和SW-MSA的操作了。
+
+之前的ViT对全局特征的提取更好，而对细节的内容的提取不足，作者认为应该将patch缩小，但是随着patch尺寸的缩小，patch的数量就会增加，那做MSA的计算量也几何增加。借鉴于CNN，那么也在ViT中引入Inductive Bias，将Self-attention仅限于局部区域，像卷积一样，在计算的过程中，不断把小的patch拼接，最后形成数量更少、范围更大的patch。
+
+<img src="./10.png" alt="SwinTF Structure" title="SwinTF Structure" />
+
+模型结构如图，
