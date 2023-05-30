@@ -2,6 +2,8 @@
 
 论文链接:https://arxiv.org/abs/2304.02643
 
+代码地址:https://github.com/facebookresearch/segment-anything
+
 应用地址:https://segment-anything.com
 
 这篇文章的目标是建立一个图像分割的即时基础模型，实现在多种数据集上对其进行预训练后解决下游的分割任务。
