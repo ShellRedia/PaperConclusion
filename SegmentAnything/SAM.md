@@ -31,6 +31,7 @@ __模型__ 方面，作者将提出的模型称为 SAM，并满足三个方面�
 关于任务，其intuition是将自然语言处理（NLP）中的prompt的概念转化到分割领域，其中提示可以是前景/背景点集、粗略的框或mask、自由形式的文本，或者一般情况下的任何指示图像中需要进行分割的信息。
 
 而可提示分割任务的目标是在给定任何提示的情况下返回一个有效的分割mask。所谓有效mask要求是在模棱两可的提示或是可能涉及多个对象的情况下，也应该对其中至少一个对象生成一个合理的mask(参考下图)。且这个任务可以用于预训练，并且这样的预训练的结果可以直接作用于下游任务，因此是zero-shot的，此外还提了一系列相关的分割任务（交互式分割、边缘检测、超像素化、对象提案生成、前景分割、语义分割、实例分割、全景分割等）。
+
 ![Fig01](kirillov2023segment/01.png)
 
 SAM的结构如下图，由三部分组成: an image encoder, a flexible prompt encoder, and a fast mask decoder，且该模型建立在Transformer视觉模型的基础上，接下来分别看看这几个部分做了什么:
@@ -40,6 +41,7 @@ SAM的结构如下图，由三部分组成: an image encoder, a flexible prompt 
 (2) prompt encoder: 考虑两类提示: 稀疏提示（点、框、文本）和密集提示（mask）。对于稀疏提示，使用位置编码来表示点和框，位置编码与每种提示类型的learned embedding相加，而对于自由文本，则使用CLIP的现成文本编码器；对于密集提示（mask），则使用卷积进行embedding，并与图像embedding进行逐元素求和。
 
 (3) Mask decoder: 将图像embedding、提示embedding和输出token高效地映射到一个mask。采用了Transformer decoder block 的修改版本，后接动态mask预测头。修改后的decoder block在两个方向上（提示到图像embedding和图像embedding到提示）使用自注意力和交叉注意力来更新所有embedding。在运行两个block之后，我们上采样图像embedding, 使用多层MLP将输出token映射到一个动态线性分类器，计算每个图像位置处的掩码前景概率。
+
 ![Fig02](kirillov2023segment/02.png)
 
 关于歧义的解决，则是对模型进行了修改，使其能够为单个提示预测多个输出mask。观察发现，预测3个mask输出就足以解决大多数常见情况（嵌套mask通常最多三层: 整体、部分和子部分 ~~原文:whole, part, and subpart,咋定义的？~~ ）。在训练过程中，仅反向传播掩码的最小损失，通过为每个mask预测置信度得分（即估计的IoU）后进行排名。
@@ -49,13 +51,17 @@ SAM的结构如下图，由三部分组成: an image encoder, a flexible prompt 
 然后是介绍作者他们弄的数据集和数据引擎1.1B mask dataset, SA-1B，这里主要就讲了怎么去通过之前说的三个阶段来做数据的，总的来说是一些怎么去做mask的操作和指标上的细节问题。
 
 而后是结果方面的一些讨论，首先是Zero-Shot迁移实验，作者考虑了五个任务，其中四个与训练SAM的可提示分割任务明显不同。这些实验评估了SAM在训练过程中未见过的数据集和任务上的表现，这些数据集可能包括在SA-1B不存在的图像分布（例如图中所示的underwater or ego-centric图像）。
+
 ![Fig03](kirillov2023segment/03.png)
 
 具体而言则是提示SAM执行以下任务: (1) 边缘检测，(2) 分割所有物体即目标提案生成，(3) 分割检测到的物体即实例分割，以及(4) 作为概念验证，从自由文本中分割物体。这四个任务与SAM训练时的可提示分割任务明显不同并通过提示工程实现。
 
 在评估方面，除了使用标准的mIoU指标外，还采用人工方式来进行语义判断，其中注释员根据从1（无意义）到10（像素完美）的评分来评估mask质量。当然具体的评估项目也就是第7节开始的小标题所述了，作者有关于此有详细的图标总结。总的来说，在分割上的性能挺好，在其他例如边缘检测的任务上就不如近来的模型。
+
 ![Fig04](kirillov2023segment/04.png)
+
 ![Fig05](kirillov2023segment/05.png)
+
 ![Fig06](kirillov2023segment/06.png)
 
 随后是一些消融实验，用以说明所设计工作的意义:
@@ -66,8 +72,11 @@ SAM的结构如下图，由三部分组成: an image encoder, a flexible prompt 
     另：这里提一下 OCTA 在官方 Demo 上的表现。
 
 ![Fig01](kirillov2023segment_Demo/01.png)
+
 ![Fig02](kirillov2023segment_Demo/02.png)
+
 ![Fig03](kirillov2023segment_Demo/03.png)
+
 ![Fig04](kirillov2023segment_Demo/04.png)
 
 可以看出如同综述和 __论文 2.__ 分析的一样，对于轮廓清晰的大型联通对象的分割效果才比较好（例如FAZ）；对于RV本身无论怎么调整作为提示的正负点，效果也还是不太好，尤其是微小的末端区域。
