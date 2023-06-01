@@ -111,6 +111,8 @@ SAM的结构如下图，由三部分组成: an image encoder, a flexible prompt 
 
 ### 3. BreastSAM: A Study of Segment Anything Model for Breast Tumor Detection in Ultrasound Images
 
+论文链接: https://arxiv.org/abs/2305.12447
+
 这篇文章讲了 SAM 在乳腺癌分割的应用，具体而言就是分割乳腺肿瘤。
 
 首先是对乳腺肿瘤的简要介绍：
@@ -164,6 +166,8 @@ SAM的结构如下图，由三部分组成: an image encoder, a flexible prompt 
 </br>
 
 ### 4.SkinSAM: Empowering Skin Cancer Segmentation with Segment Anything Model
+
+论文链接: https://arxiv.org/abs/2304.13973
 
 这篇文章是关于皮肤癌区域分割的，首先花一点篇幅介绍皮肤癌的基本情况：
 
