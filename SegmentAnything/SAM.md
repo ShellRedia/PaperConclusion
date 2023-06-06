@@ -40,7 +40,7 @@ SAM的结构如下图，由三部分组成: an image encoder, a flexible prompt 
 
 (2) prompt encoder: 考虑两类提示: 稀疏提示（点、框、文本）和密集提示（mask）。对于稀疏提示，使用位置编码来表示点和框，位置编码与每种提示类型的learned embedding相加，而对于自由文本，则使用CLIP的现成文本编码器；对于密集提示（mask），则使用卷积进行embedding，并与图像embedding进行逐元素求和。
 
-(3) mask decoder: 将图像embedding、提示embedding和输出token高效地映射到一个mask。采用了Transformer decoder block 的修改版本，后接动态mask预测头。修改后的decoder block在两个方向上（提示到图像embedding和图像embedding到提示）使用自注意力和交叉注意力来更新所有embedding。在运行两个block之后，我们上采样图像embedding, 使用多层MLP将输出token映射到一个动态线性分类器，计算每个图像位置处的掩码前景概率。
+(3) mask decoder: 将图像embedding、提示embedding和输出token高效地映射到一个mask。采用了Transformer decoder block 的修改版本，后接动态mask预测头。修改后的decoder block在两个方向上（提示到图像embedding和图像embedding到提示）使用自注意力和交叉注意力来更新所有embedding。在运行两个block之后，上采样图像embedding, 使用多层MLP将输出token映射到一个动态线性分类器，计算每个图像位置处的掩码前景概率。
 
 ![Fig02](kirillov2023segment/02.png)
 
@@ -211,6 +211,7 @@ HAM10000数据集收集了10,015张皮肤镜图像，代表了全面的色素性
 ### 5.Customized Segment Anything Model for Medical Image Segmentation
 
 论文链接：https://arxiv.org/abs/2304.13785
+
 代码链接：https://github.com/hitachinsk/SAMed
 
 由于很多SAM相关的应用都没有公布微调的具体流程，所以看看这篇能不能找到希望。这篇论文提出的方法取名SAMed，应用基于低秩（LoRA）微调策略对SAM图像编码器进行微调，并与提示编码器和掩膜解码器一起在标记的医学图像分割数据集上进行微调。并提到由于SAMed只更新SAM参数的一小部分，它在实际使用中的部署成本和存储成本相当较小。
@@ -223,5 +224,41 @@ Introduction部分介绍了大模型的强势，以及其在医学图像方面�
 在"vit_b"模式下，更新后的模型大小（18.81M）仅占原始模型大小（358M）的5.25%。如果将LoRA应用于图像编码器和掩膜解码器，模型大小将进一步减小到6.32M，但性能稍微下降。在训练策略方面，观察到warm-upc策略和AdamW优化器可以极大地稳定微调过程，从而提高分割精度。在Synapse多器官分割数据集上仅微调160个epoch后，SAMed实现了81.88的DSC和20.64的HD，与当前最先进的基准方法相当。SAMed可以被视为SAM的插件，并且与SAM完全兼容。在推断过程中，只需切换SAMed的更新层，赋予SAM处理医学图像的能力。
 </sub>
 
-随后总结了一下本文的贡献。
+![Fig01](zhang2023customized/01.png)
 
+相关工作主要涉及了传统有监督分割模型，大模型以及微调策略三部分，都只是泛泛而谈的介绍，和其他论文没啥区别，所以省略了。
+
+方法章节从SAMed的pipeline和结构的角度进行了介绍，总体结构如图：
+
+![Fig02](zhang2023customized/02.png)
+
+接下来按模块分别介绍，首先是采用了 LoRA fine-tunning 策略的图像编码器，结构如图：
+
+![Fig03](zhang2023customized/03.png)
+
+其实就是把原本的ViT参数固定，然后在旁边架一条带权重的支路（two linear layers），通过学习这些支路的参数达到微调的目的。与在 SAM 中微调所有参数相比，LoRA 允许在医学图像训练中只更新一小部分参数，这不仅节省了计算开销，还减少了微调模型的部署和存储难度，同时保证了分割性能。
+
+然后是提示编码器和 mask解码器，如下图所示。对于提示编码器，在保留默认嵌入的基础上进行微调训练。而对于 mask解码器，包括一个轻量级 Transformer 层和一个分割头部。可以选择将 LoRA 应用于这个轻量级 Transformer 层，并微调分割头部，或者直接微调掩蔽解码器中的所有参数。这两种策略在训练和部署开销上都是可以接受的，而后者可以导致更小的模型大小，便于部署，但性能较低。
+
+![Fig04](zhang2023customized/04.png)
+
+然后是关于一些训练策略上的信息，是关于损失函数，warm-up以及AdamW optimizer。后面两个不用详说，损失函数是：
+
+$ L = {\lambda_1}CE(\hat{S_l}, D(S)) + {\lambda_2}Dice(\hat{S_l}, D(S))$
+
+之后一章是关于实验部分的内容，采用 Synapse 多器官分割数据集，关于该数据集的介绍如下：
+
+<sub>
+该数据集包含了 MICCAI 2015 多器官腹部 CT 扫描挑战赛中的 30 个腹部 CT 扫描，其中包括 18 个训练样本和 12 个测试样本。总共有 3779 个腹部 CT 图像切片，训练集包含 2212 个切片。所有 CT 数据的切片数量在 85 到 198 之间，每个切片包含 512×512 像素，空间分辨率为 [0.54∼0.54]×[0.98∼0.98]×[2.5∼5.0]mm3。
+</sub>
+
+<br>
+采用 TransUnet的数据增强策略，并基于 SAM 的 "vit_b" 版本进行所有实验。对于一个 224×224 的 CT 图像，首先将其上采样为 512×512，然后将这个上采样的图像输入到 SAMed 中，以保持预测分割 logits 的良好图像分辨率。为了提高效率和性能，LoRA 的秩设置为 4。交叉熵的损失权重设置为 0.2，Dice 损失的权重设置为 0.8。对于Warm-up，将初始学习率 lr 设置为 0.005，Warm-up期 WP 设置为 250，最大迭代次数设置为 18600（200 个 epoch）。AdamW 优化器的β1、β2 和权重衰减设置为 0.9、0.999 和 0.1。在 14880 次迭代（160 个 epoch）时进行早停。
+
+然后是对于SOTA方法的比较，结果如图和表所示，不是最好，但也具有相当竞争力。
+
+![Fig05](zhang2023customized/05.png)
+
+![Fig06](zhang2023customized/06.png)
+
+关于消融实验，讨论了策略上取舍所造成的不同结果，并给出了对应建议。
