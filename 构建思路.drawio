@@ -1,17 +1,20 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" version="27.1.4">
   <diagram name="第 1 页" id="5Wuo8rqLmrNksUoKXJTr">
-    <mxGraphModel dx="983" dy="512" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1426" dy="743" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="b4gbgYYdiAaQnuZUas2t-1" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;段落&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="340" y="200" width="120" height="60" as="geometry" />
+          <mxGeometry x="340" y="220" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="b4gbgYYdiAaQnuZUas2t-2" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;灵活补充&lt;/b&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
-          <mxGeometry x="110" y="320" width="120" height="60" as="geometry" />
+          <mxGeometry x="100" y="130" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="b4gbgYYdiAaQnuZUas2t-3" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;表格&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="380" y="580" width="120" height="60" as="geometry" />
+        <mxCell id="b4gbgYYdiAaQnuZUas2t-24" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="b4gbgYYdiAaQnuZUas2t-3" target="b4gbgYYdiAaQnuZUas2t-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="b4gbgYYdiAaQnuZUas2t-3" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;4.实验&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="400" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="b4gbgYYdiAaQnuZUas2t-9" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="b4gbgYYdiAaQnuZUas2t-4" target="b4gbgYYdiAaQnuZUas2t-1">
           <mxGeometry relative="1" as="geometry" />
@@ -41,16 +44,27 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="b4gbgYYdiAaQnuZUas2t-15" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;3.方法&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="590" y="290" width="120" height="60" as="geometry" />
+          <mxGeometry x="590" y="310" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="b4gbgYYdiAaQnuZUas2t-16" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;固定&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="100" y="180" width="120" height="60" as="geometry" />
+          <mxGeometry x="100" y="50" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="b4gbgYYdiAaQnuZUas2t-20" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="b4gbgYYdiAaQnuZUas2t-19" target="b4gbgYYdiAaQnuZUas2t-12">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="b4gbgYYdiAaQnuZUas2t-19" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Google Scholar→GPT&lt;/h1&gt;&lt;p&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;先用谷歌学术把关键词找出来，然后摘要喂给GPT（设计提示词），复制排列&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
-          <mxGeometry x="990" y="150" width="310" height="120" as="geometry" />
+          <mxGeometry x="990" y="150" width="300" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="b4gbgYYdiAaQnuZUas2t-25" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="b4gbgYYdiAaQnuZUas2t-22" target="b4gbgYYdiAaQnuZUas2t-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="440" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="b4gbgYYdiAaQnuZUas2t-22" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;5.讨论&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="490" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="b4gbgYYdiAaQnuZUas2t-26" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;6.结论&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="590" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
