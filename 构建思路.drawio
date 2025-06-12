@@ -69,8 +69,8 @@
         <mxCell id="b4gbgYYdiAaQnuZUas2t-26" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;6.结论&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="590" y="590" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="b4gbgYYdiAaQnuZUas2t-28" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;python脚本，规范化.bib&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1030" y="220" width="300" height="80" as="geometry" />
+        <mxCell id="b4gbgYYdiAaQnuZUas2t-28" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;python脚本，规范化.bib文件的引用格式&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="220" width="220" height="80" as="geometry" />
         </mxCell>
         <mxCell id="b4gbgYYdiAaQnuZUas2t-29" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="b4gbgYYdiAaQnuZUas2t-28" target="b4gbgYYdiAaQnuZUas2t-12">
           <mxGeometry relative="1" as="geometry">
