@@ -4,6 +4,12 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="hiedMb1nIKJ2MyAVj1bg-51" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="hiedMb1nIKJ2MyAVj1bg-50" target="hiedMb1nIKJ2MyAVj1bg-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hiedMb1nIKJ2MyAVj1bg-50" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="-330" y="540" width="300" height="180" as="geometry" />
+        </mxCell>
         <mxCell id="hiedMb1nIKJ2MyAVj1bg-25" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="hiedMb1nIKJ2MyAVj1bg-24" target="hiedMb1nIKJ2MyAVj1bg-6">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
@@ -119,7 +125,16 @@
           <mxGeometry x="120" y="710" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="hiedMb1nIKJ2MyAVj1bg-46" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;快捷键&lt;/span&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-360" y="610" width="120" height="60" as="geometry" />
+          <mxGeometry x="-310" y="640" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hiedMb1nIKJ2MyAVj1bg-47" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;搜索&lt;/span&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-170" y="560" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hiedMb1nIKJ2MyAVj1bg-48" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;上下&lt;/span&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-310" y="560" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hiedMb1nIKJ2MyAVj1bg-49" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;回车&lt;/span&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-170" y="640" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
