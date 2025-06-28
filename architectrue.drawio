@@ -46,7 +46,7 @@
         <mxCell id="hiedMb1nIKJ2MyAVj1bg-13" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="hiedMb1nIKJ2MyAVj1bg-11" target="hiedMb1nIKJ2MyAVj1bg-12">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="hiedMb1nIKJ2MyAVj1bg-11" value="&lt;font style=&quot;font-size: 30px;&quot;&gt;存储&lt;/font&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="hiedMb1nIKJ2MyAVj1bg-11" value="&lt;font style=&quot;font-size: 25px;&quot;&gt;存储&lt;/font&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="-870" y="640" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="hiedMb1nIKJ2MyAVj1bg-12" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;类型&lt;br&gt;（文件夹）&lt;/span&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
